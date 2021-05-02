@@ -11,6 +11,7 @@ import androidx.compose.foundation.lazy.rememberLazyListState
 import androidx.compose.foundation.rememberScrollState
 import androidx.compose.foundation.shape.RoundedCornerShape
 import androidx.compose.material.MaterialTheme
+import androidx.compose.material.Surface
 import androidx.compose.material.TopAppBar
 import androidx.compose.runtime.Composable
 import androidx.compose.ui.Alignment
@@ -26,90 +27,93 @@ import androidx.compose.material.Text as Text1
 class MainActivity : AppCompatActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
-        setContent{
-        //    NewStory()
+        setContent {
+            //    NewStory()
 
-            var arrData = arrayListOf<Int>()
-            repeat(100){
-                arrData.add(it)
+            Surface(color = Color.White) {
+                var arrData = arrayListOf<Int>()
+                repeat(100) {
+                    arrData.add(it)
+                }
+                composeList(data = arrData)
             }
-            composeList(data = arrData)
         }
     }
 }
 
 @Composable
-fun NewStory(){
+fun NewStory() {
 
-        MaterialTheme {
+    MaterialTheme {
 
-            val typoGraphy = MaterialTheme.typography
+        val typoGraphy = MaterialTheme.typography
 
-            Column(
-            ) {
+        Column(
+        ) {
 
-                TopAppBar(
-                    title = {
-                        Text1(text = "My First Compose App")
-                    }
-                )
+            TopAppBar(
+                title = {
+                    Text1(text = "My First Compose App")
+                }
+            )
 
-                Image(
-                    painter = painterResource(id = R.drawable.header),
-                    contentDescription = null,
-                    alignment = Alignment.Center,
-                    modifier = Modifier
-                        .padding(15.dp)
-                        .height(280.dp)
-                        .fillMaxWidth()
-                        .clip(RoundedCornerShape(15)),
-                    contentScale = ContentScale.Crop
-                )
+            Image(
+                painter = painterResource(id = R.drawable.header),
+                contentDescription = null,
+                alignment = Alignment.Center,
+                modifier = Modifier
+                    .padding(15.dp)
+                    .height(280.dp)
+                    .fillMaxWidth()
+                    .clip(RoundedCornerShape(15)),
+                contentScale = ContentScale.Crop
+            )
 
-                Spacer(modifier = Modifier.padding(15.dp))
+            Spacer(modifier = Modifier.padding(15.dp))
 
-                Text1(
-                    text = "Welcome Pooja Srivastava",
-                    color = Color.Black,
-                    textAlign = TextAlign.Center,
-                    modifier = Modifier
-                        .padding(start = 15.dp, end = 15.dp, bottom = 5.dp)
-                        .fillMaxWidth(),
-                    style = typoGraphy.h6
-                )
+            Text1(
+                text = "Welcome Pooja Srivastava",
+                color = Color.Black,
+                textAlign = TextAlign.Center,
+                modifier = Modifier
+                    .padding(start = 15.dp, end = 15.dp, bottom = 5.dp)
+                    .fillMaxWidth(),
+                style = typoGraphy.h6
+            )
 
-                Text1(
-                    text = "This is another",
-                    color = Color.Blue,
-                    textAlign = TextAlign.Center,
-                    modifier = Modifier
-                        .padding(start = 15.dp, end = 15.dp, bottom = 5.dp)
-                        .fillMaxWidth(),
-                    style = typoGraphy.body1
-                )
+            Text1(
+                text = "This is another",
+                color = Color.Blue,
+                textAlign = TextAlign.Center,
+                modifier = Modifier
+                    .padding(start = 15.dp, end = 15.dp, bottom = 5.dp)
+                    .fillMaxWidth(),
+                style = typoGraphy.body1
+            )
 
-                Text1(
-                    text = "This is new another",
-                    color = Color.Green,
-                    textAlign = TextAlign.Center,
-                    modifier = Modifier
-                        .padding(start = 15.dp, end = 15.dp, bottom = 5.dp)
-                        .fillMaxWidth(),
-                    style = typoGraphy.body1
-                )
-            }
+            Text1(
+                text = "This is new another",
+                color = Color.Green,
+                textAlign = TextAlign.Center,
+                modifier = Modifier
+                    .padding(start = 15.dp, end = 15.dp, bottom = 5.dp)
+                    .fillMaxWidth(),
+                style = typoGraphy.body1
+            )
         }
+    }
 }
 
 @Composable
-fun composeList(data: ArrayList<Int>){
+fun composeList(data: ArrayList<Int>) {
     val state = rememberLazyListState()
     LazyColumn(
         state = state,
-    ){
-        items(data){ item ->
+        modifier = Modifier.fillMaxSize() // this is needed to give height and width
+    ) {
+        items(data) { item ->
 
-                ItemRow(item)
+            ItemRow(item)
 
         }
     }
@@ -119,7 +123,7 @@ fun composeList(data: ArrayList<Int>){
 fun ItemRow(item: Int) {
 
     Text1(
-        text = ""+item,
+        text = "" + item,
         color = Color.Black,
         textAlign = TextAlign.Center
     )
